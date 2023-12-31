@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ferreira-leonardo/clean-arq-node-api/issues"
   },
-  "homepage": "https://github.com/ferreira-leonardo/clean-arq-node-api#readme"
+  "homepage": "https://github.com/ferreira-leonardo/clean-arq-node-api#readme",
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
 }
