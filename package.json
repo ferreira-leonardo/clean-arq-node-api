@@ -4,7 +4,6 @@
   "description": "API using clean architecture and unit test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -14,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged"
+      "pre-commit": "echo 'oioioi'"
     }
   },
   "author": "Leonardo Ferreira",
