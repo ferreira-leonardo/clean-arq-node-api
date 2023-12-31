@@ -4,7 +4,8 @@
   "description": "API using clean architecture and unit test",
   "main": "index.js",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pre-commit": "echo 'oioioi'"
   },
   "lint-staged": {
     "*.js": [
