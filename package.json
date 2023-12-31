@@ -7,7 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
-    "*.js": ["standard"]
+    "*.js": [
+      "standard"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -20,6 +27,7 @@
   },
   "homepage": "https://github.com/ferreira-leonardo/clean-arq-node-api#readme",
   "devDependencies": {
+    "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "standard": "^17.1.0"
   }
