@@ -1,0 +1,19 @@
+{
+  "name": "clean-arq-node-api",
+  "version": "1.0.0",
+  "description": "API using clean architecture and unit test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferreira-leonardo/clean-arq-node-api.git"
+  },
+  "author": "Leonardo Ferreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ferreira-leonardo/clean-arq-node-api/issues"
+  },
+  "homepage": "https://github.com/ferreira-leonardo/clean-arq-node-api#readme"
+}
