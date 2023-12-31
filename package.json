@@ -16,16 +16,8 @@
       "pre-commit": "lint-staged"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ferreira-leonardo/clean-arq-node-api.git"
-  },
   "author": "Leonardo Ferreira",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ferreira-leonardo/clean-arq-node-api/issues"
-  },
-  "homepage": "https://github.com/ferreira-leonardo/clean-arq-node-api#readme",
   "devDependencies": {
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
