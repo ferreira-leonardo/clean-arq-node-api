@@ -9,7 +9,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "standard --fix"
+      "npx standard --fix"
     ]
   },
   "husky": {
