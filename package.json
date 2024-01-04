@@ -9,12 +9,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "standard"
+      "standard --fix"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'oioioi'"
+      "pre-commit": "lint-staged"
     }
   },
   "author": "Leonardo Ferreira",
