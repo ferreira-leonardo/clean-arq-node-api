@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "pre-commit": "echo 'oioioi'"
+    "standardrun": "standard --fix"
   },
   "lint-staged": {
     "*.js": [
-      "npx standard --fix"
+      "standard --fix"
     ]
   },
   "husky": {
