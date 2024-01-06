@@ -7,6 +7,9 @@
     "prepare": "husky install",
     "test": "jest"
   },
+  "standard": {
+    "env": ["jest"]
+  },
   "author": "Leonardo Ferreira",
   "license": "MIT",
   "devDependencies": {
