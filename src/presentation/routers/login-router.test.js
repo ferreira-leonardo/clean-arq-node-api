@@ -1,17 +1,32 @@
 const LoginRouter = require('./LoginRouter')
 const MissingParamError = require('../helpers/MissingParamError')
 const UnauthorizedError = require('../helpers/UnauthorizedError')
+const ServerError = require('../helpers/ServerError')
 
-const makeSut = () => {
+const makeAuthUseCase = () => {
   class AuthUseCaseSpy {
-    auth (email, password) {
+    async auth (email, password) {
       this.email = email
       this.password = password
       return this.accessToken
     }
   }
 
-  const authUseCaseSpy = new AuthUseCaseSpy()
+  return new AuthUseCaseSpy()
+}
+
+const makeAuthUseCaseWithError = () => {
+  class AuthUseCaseSpy {
+    async auth () {
+      throw new Error()
+    }
+  }
+
+  return new AuthUseCaseSpy()
+}
+
+const makeSut = () => {
+  const authUseCaseSpy = makeAuthUseCase()
   authUseCaseSpy.accessToken = 'valid-token'
   const sut = new LoginRouter(authUseCaseSpy)
 
@@ -51,6 +66,7 @@ describe('Login router', () => {
 
     const httpResponse = await sut.route()
     expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
   })
 
   test('Should return 500 if httpRequest has no body ', async () => {
@@ -58,6 +74,7 @@ describe('Login router', () => {
     const httpRequest = {}
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
   })
 
   test('Should call AuthUseCase with correct parameters', async () => {
@@ -102,11 +119,28 @@ describe('Login router', () => {
 
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
   })
 
   test('Should return 500 if no AuthUseCase has no auth method', async () => {
     class AuthUseCaseSpy {}
     const authUseCaseSpy = new AuthUseCaseSpy()
+    const sut = new LoginRouter(authUseCaseSpy)
+
+    const httpRequest = {
+      body: {
+        email: 'any-email@email.com',
+        password: 'any-password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 500 if no AuthUseCase throws', async () => {
+    const authUseCaseSpy = makeAuthUseCaseWithError()
     const sut = new LoginRouter(authUseCaseSpy)
 
     const httpRequest = {
