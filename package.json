@@ -7,17 +7,6 @@
     "prepare": "husky install",
     "test": "jest"
   },
-  "lint-staged": {
-    "*.js": [
-      "standard --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "author": "Leonardo Ferreira",
   "license": "MIT",
   "devDependencies": {
