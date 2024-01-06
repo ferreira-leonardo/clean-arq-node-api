@@ -7,10 +7,12 @@ const makeSut = () => {
     auth (email, password) {
       this.email = email
       this.password = password
+      return this.accessToken
     }
   }
 
   const authUseCaseSpy = new AuthUseCaseSpy()
+  authUseCaseSpy.accessToken = 'valid-token'
   const sut = new LoginRouter(authUseCaseSpy)
 
   return {
@@ -73,7 +75,10 @@ describe('Login router', () => {
   })
 
   test('Should return 401 when invalid creditials are provided', async () => {
-    const { sut } = makeSut()
+    const { sut, authUseCaseSpy } = makeSut()
+
+    authUseCaseSpy.accessToken = null
+
     const httpRequest = {
       body: {
         email: 'invalid-email@email.com',
@@ -113,5 +118,20 @@ describe('Login router', () => {
 
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
+  })
+
+  test('Should return 200 when valid creditials are provided', async () => {
+    const { sut, authUseCaseSpy } = makeSut()
+
+    const httpRequest = {
+      body: {
+        email: 'valid-email@email.com',
+        password: 'valid-password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body.accessToken).toEqual(authUseCaseSpy.accessToken)
   })
 })
